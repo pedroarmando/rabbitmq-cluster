@@ -4,7 +4,12 @@
 ( sleep 10 ; \
     rabbitmqctl add_user admin admin 2>/dev/null ; \
     rabbitmqctl set_user_tags admin administrator ; \
-    rabbitmqctl set_permissions -p / admin ".*" ".*" ".*"
+    rabbitmqctl set_permissions -p / admin ".*" ".*" ".*" ; \
+    \
+    rabbitmqctl add_user pub pub 2>/dev/null ; \
+    rabbitmqctl set_permissions -p / pub ".*" ".*" ."*" ; \
+    rabbitmqctl add_user sub sub 2>/dev/null ; \
+    rabbitmqctl set_permissions -p / sub ".*" ".*" ."*" ;
 ) &
 
 ## START RABBITMQ SERVER
