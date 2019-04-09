@@ -1,8 +1,8 @@
 version: '3'
 services:
   node:
-    depends_on:
-      - etcd
+  #  depends_on:
+  #    - etcd
     image: moskitos.azurecr.io/rabbitmq-node:3.7.13
     environment:
       # https://www.rabbitmq.com/clustering.html#erlang-cookie 
@@ -12,11 +12,11 @@ services:
       - "6672:5672"
     deploy:
       mode: replicated
-      replicas: 2
-  etcd:
-    image: quay.io/coreos/etcd
-    hostname: etcd
-    ports:
-      - "2379:2379"
-      - "2380:2380"
-    command: sh -c 'etcd --name etcd --initial-advertise-peer-urls http://0.0.0.0:2380 --listen-peer-urls http://0.0.0.0:2380 --listen-client-urls http://0.0.0.0:2379 --advertise-client-urls http://etcd:2379'
+      replicas: 1
+  #etcd:
+  #  image: quay.io/coreos/etcd
+  #  hostname: etcd
+  #  ports:
+  #    - "2379:2379"
+  #    - "2380:2380"
+  #  command: sh -c 'etcd --name etcd --initial-advertise-peer-urls http://0.0.0.0:2380 --listen-peer-urls http://0.0.0.0:2380 --listen-client-urls http://0.0.0.0:2379 --advertise-client-urls http://etcd:2379'
