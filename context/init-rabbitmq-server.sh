@@ -1,7 +1,9 @@
 #!/bin/sh
 
 ## CREATE DEFAULT USERS
-( sleep 10 ; \
+( sleep 30 ; \
+    rabbitmqctl add_vhost / ; \
+    \
     rabbitmqctl add_user admin admin 2>/dev/null ; \
     rabbitmqctl set_user_tags admin administrator ; \
     rabbitmqctl set_permissions -p / admin ".*" ".*" ".*" ; \
